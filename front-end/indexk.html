@@ -39,6 +39,7 @@
         <h1>
           <p style="word-spacing: 60px;">
             <!--Tabs with color and spacing of tabs-->
+            <a .tab button style="color:darkgoldenrod;" href="Home">Home</a>
             <a .tab button style="color:darkgoldenrod;" href="Books">Books</a>
             <a .tab button style="color:darkgoldenrod;" href="Movies">Movies</a>
             <a .tab button style="color:darkgoldenrod;" href="Music">Music</a>
@@ -47,9 +48,13 @@
           </p>
         </h1>
         <!--Search bar filter-->
-      <div style="text-align:center">
-      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for book, movie, song..." title="Type in a name">
+      <form id = "form">
+        <input type = "search" id = "query" name = "query" placeholder = "Seach for books, movies, and music" size = "40">
+        <button>Search</button>
+      </form>
 
+      <br></br>
+      <i>Looking for your favorite books, movies, and/or music, well this is the website for you!</i>
     </head>
 
 
