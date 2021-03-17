@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
   <meta charset="UTF-8">
-  <met name="description" content ="This website allows you to find your favorite books, movies, and music.">
+  <meta name="description" content ="This website allows you to find your favorite books, movies, and music.">
+  <head>
     <title>Find Your Jam</title>
-    <head>
     <!--h3,h2,h4 are what allows you to move the images-->
     <style>
+      /*
     h3 {
       position: absolute;
       left: 224px;
@@ -21,37 +22,82 @@
       left: 482px;
       top: 130px;
     }
+    */
+
+    .container {
+      display:flex;
+      flex-wrap: nowrap;
+      justify-content: space-evenly;
+      align-items:flex-end;
+    }
     </style>
-    <body style="background-color:AliceBlue;">
+  </head>
+  <body background="Background_image.png">
+    <center>
+      <h1 style="font-size:5vw;">
+        <i>
+          <p style="color: darkgoldenrod;">
+          <b>Find Your Jam</b>
+        </i>
+        <img src="jamImage.png" alt="Jam Jar" width="80" height="80">
+        </p>
+      </h1>
+    </center>
 
-      <center><h1 style="font-size:5vw;"><i><p style="color: Maroon;"><b>Find Your Jam</b><img src="jamImage.png" alt="Jam Jar" width = "80" height="80"></h1></p></i></center>
+    <br></br>
+    <!--Images-->
+    <div style="text-align:center">
+    <!--h3,h2,h4 are what allows you to move the images-->
 
-      <br></br>
-      <!--Images-->
-      <div style="text-align:left">
-      <h3><img src="Books.png" alt="Books" width = "80" height="80"></h3>
-      <h2><img src="Movie.png" alt="Movies" width = "210" height="180"></h2>
-      <h4><img src="MusicLogo.png" alt="Music" width = "210" height="200"></h4>
-      <!--h3,h2,h4 are what allows you to move the images-->
+    <!-- Note: container and flexbox written during office hours -->
+    <div class="container">
+      <a .tab button style="color:darkgoldenrod;" href="Home">Home</a>
+      <div>
+        <a .tab button style="color:darkgoldenrod;" href="Books">
+          <img src="Books.png" alt="Books" width="80" height="80">
+          <br>
+          Books
+        </a>
+      </div>
+      <div>
+        <a .tab button style="color:darkgoldenrod;" href="Movies">
+          <img src="Movie.png" alt="Movies" width="80">
+          <br>Movies
+        </a>
+      </div>
+      <div>
+        <a .tab button style="color:darkgoldenrod;" href="Music">
+          <img src="MusicLogo.png" alt="Music" width="80">
+          <br>Music
+        </a>
+      </div>
+      <a .tab button style="color:darkgoldenrod;" href="Account">Sign-Up/Login</a>
+      <a .tab button style="color:darkgoldenrod;" href="Help">Help</a>
+    </div>
 
 
-      <center>
-        <h1>
-          <p style="word-spacing: 60px;">
-            <!--Tabs with color and spacing of tabs-->
-            <a .tab button style="color:Maroon;" href="Books">Books</a>
-            <a .tab button style="color:Maroon;" href="Movies">Movies</a>
-            <a .tab button style="color:Maroon;" href="Music">Music</a>
-            <a .tab button style="color:Maroon;" href="Account">Sign-Up/Login</a>
-            <a .tab button style="color:Maroon;" href="Help">Help</a>
-          </p>
-        </h1>
-        <!--Search bar filter-->
-      <div style="text-align:center">
-      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for book, movie, song..." title="Type in a name">
-
-    </head>
 
 
+    <center>
+      <!-- <h1>
+        <p style="word-spacing: 60px;">
+          <a .tab button style="color:darkgoldenrod;" href="Home">Home</a>
+          <a .tab button style="color:darkgoldenrod;" href="Books">Books</a>
+          <a .tab button style="color:darkgoldenrod;" href="Movies">Movies</a>
+          <a .tab button style="color:darkgoldenrod;" href="Music">Music</a>
+          <a .tab button style="color:darkgoldenrod;" href="Account">Sign-Up/Login</a>
+          <a .tab button style="color:darkgoldenrod;" href="Help">Help</a>
+        </p>
+      </h1> -->
+      <!--Search bar filter-->
+    
+    <form id = "form">
+      <input type = "search" id = "query" name = "query" placeholder = "Seach for books, movies, and music" size = "40">
+      <button>Search</button>
+    </form>
 
+    <br></br>
+    <i>Looking for your favorite books, movies, and/or music, well this is the website for you!</i>
+  </center>
+  </body>
 </html>
