@@ -1,52 +1,32 @@
 <!DOCTYPE html>
 <html>
   <meta charset="UTF-8">
-  <meta name="description" content ="This website allows you to find your favorite books, movies, and music.">
+  <meta name="description" content ="This page is to find book.">
   <head>
-    <title>Find Your Jam</title>
     <style>
+
     .container {
       display:flex;
       flex-wrap: nowrap;
       justify-content: space-evenly;
       align-items:flex-end;
     }
-    .button {
-      background-color: #df7e10;
-      border: none;
-      color: white;
-      padding: 15px 32px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      cursor: pointer;
-      font-family: Arial;
-      position: absolute;
-      top: 0px;
-      right: 0px;
+
+    body{
+      background-image: url('books_background.jpeg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100% 100%;
     }
+
     </style>
   </head>
-  <body background="Background_image.png">
-    <center>
-      <h1 style="font-size:5vw;">
-        <i>
-          <p style="color: darkgoldenrod;">
-          <b>Find Your Jam</b>
-        </i>
-        <img src="jamImage.png" alt="Jam Jar" width="80" height="80">
-        </p>
-      </h1>
-    </center>
+  <body>
 
-    <br></br>
     <div style="text-align:center">
 
-    <!-- Note: container and flexbox written during office hours -->
     <div class="container">
-      <a .tab button style="color:darkgoldenrod;" href="indexk.html" href="Home">Home</a>
+      <a .tab button style="color:darkgoldenrod;" href="indexk.html">Home</a>
       <div>
         <a .tab button style="color:darkgoldenrod;" href="books_page.html" href="Books">
           <img src="Books.png" alt="Books" width="80" height="80">
@@ -70,7 +50,14 @@
       <a .tab button style="color:darkgoldenrod;" href="Help">Help</a>
     </div>
 
+    <center>
+      <!--Search bar filter-->
+    <form id = "form">
+      <input type = "search" id = "query" name = "query" placeholder = "Seach for books, movies, and music" size = "40">
+      <button>Search</button>
+    </form>
+
     <br></br>
-    <i>Looking for your favorite books, movies, and/or music, well this is the website for you!</i>
+  </center>
   </body>
 </html>
