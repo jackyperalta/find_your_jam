@@ -4,35 +4,34 @@
   <meta name="description" content ="This website allows you to find your favorite books, movies, and music.">
   <head>
     <title>Find Your Jam</title>
-    <!--h3,h2,h4 are what allows you to move the images-->
     <style>
-      /*
-    h3 {
-      position: absolute;
-      left: 224px;
-      top: 190px;
-    }
-    h2 {
-      position: absolute;
-      left: 320px;
-      top: 125px;
-    }
-    h4 {
-      position: absolute;
-      left: 482px;
-      top: 130px;
-    }
-    */
-
     .container {
       display:flex;
       flex-wrap: nowrap;
       justify-content: space-evenly;
       align-items:flex-end;
     }
+    .button {
+      background-color: #df7e10;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      font-family: Arial;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+    }
+
+    
     </style>
   </head>
-  <body background="Background_image.png">
+  <body background="Background_image.png"></body>
     <center>
       <h1 style="font-size:5vw;">
         <i>
@@ -47,11 +46,11 @@
     <br></br>
     <!--Images-->
     <div style="text-align:center">
-    <!--h3,h2,h4 are what allows you to move the images-->
+    
 
     <!-- Note: container and flexbox written during office hours -->
     <div class="container">
-      <a .tab button style="color:darkgoldenrod;" href="Home">Home</a>
+      <a .tab button style="color:darkgoldenrod;" href="Home.html">Home</a>
       <div>
         <a .tab button style="color:darkgoldenrod;" href="Books">
           <img src="Books.png" alt="Books" width="80" height="80">
@@ -60,44 +59,26 @@
         </a>
       </div>
       <div>
-        <a .tab button style="color:darkgoldenrod;" href="Movies">
+        <a .tab button style="color:darkgoldenrod;" href="Movies.html">
           <img src="Movie.png" alt="Movies" width="80">
           <br>Movies
         </a>
       </div>
       <div>
-        <a .tab button style="color:darkgoldenrod;" href="Music">
+        <a .tab button style="color:darkgoldenrod;" href="Music.html">
           <img src="MusicLogo.png" alt="Music" width="80">
           <br>Music
         </a>
       </div>
-      <a .tab button style="color:darkgoldenrod;" href="Account">Sign-Up/Login</a>
-      <a .tab button style="color:darkgoldenrod;" href="Help">Help</a>
+      <a href="Account.html" class="button"> Sign-Up/Login</a>
+      <a .tab button style="color:darkgoldenrod;" href="Help.html">Help</a>
     </div>
-
-
-
-
-    <center>
-      <!-- <h1>
-        <p style="word-spacing: 60px;">
-          <a .tab button style="color:darkgoldenrod;" href="Home">Home</a>
-          <a .tab button style="color:darkgoldenrod;" href="Books">Books</a>
-          <a .tab button style="color:darkgoldenrod;" href="Movies">Movies</a>
-          <a .tab button style="color:darkgoldenrod;" href="Music">Music</a>
-          <a .tab button style="color:darkgoldenrod;" href="Account">Sign-Up/Login</a>
-          <a .tab button style="color:darkgoldenrod;" href="Help">Help</a>
-        </p>
-      </h1> -->
-      <!--Search bar filter-->
+<!--Creating the sign-up button>
     
-    <form id = "form">
-      <input type = "search" id = "query" name = "query" placeholder = "Seach for books, movies, and music" size = "40">
-      <button>Search</button>
-    </form>
-
-    <br></br>
-    <i>Looking for your favorite books, movies, and/or music, well this is the website for you!</i>
-  </center>
+    <a href="#" class="button"> Sign-Up/Login</a-->
+   
+      <br></br>
+      <i>Looking for your favorite books, movies, and/or music, well this is the website for you!</i>
+    </div>
   </body>
 </html>

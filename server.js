@@ -1,30 +1,31 @@
 // THIS FILE STARTS THE WEB SERVER
-const express = require('express')
-const mongoose = require('mongoose')
-const dotenv = require('dotenv')
-dotenv.config()
+const express = require('express');
+const mongoose = require('mongoose');
+require('dotenv').config();
 
-const app = express()
-const port = process.env.PORT || 8001
+const app = express();
+const port = process.env.PORT || 8001;
 
-app.use(express.json())
+app.use(express.json());
 
-// Setting up the public directory
-app.use(express.static('public'))
+// J.P: 3/17/21 - Import routers
+const userRouter = require ('./routes/UserRouter.js');
+app.use('/users', userRouter);
 
-/* DB Config */
-mongoose.connect(process.env.DATABASE_URL, {
+app.use(express.static('front-end'));
+
+// DB Config
+mongoose.connect(process.env.DB_URI, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
 .then(() => console.log('database connected...'))
-.catch(err => console.log(err))
+.catch(err => console.log(err));
 
-/* GET a page */
 app.get('/', (req, res) => {
-    res.sendFile('./example.html', { root: __dirname })
+    res.sendFile('front-end/indexk.html', { root: __dirname })
 });
 
-/* Listener */
-app.listen(port, () => console.log(`Listening on http://localhost:${port}`))
+// Listener
+app.listen(port, () => console.log(`Listening on http://localhost:${port}`));
