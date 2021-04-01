@@ -18,6 +18,13 @@
       background-attachment: fixed;
       background-size: 100% 100%;
     }
+
+    .dropdown {
+      background-color: #df7e10;
+      text-align: center;
+      font-family: Arial;
+      align-items:center;
+    } 
     </style>
   </head>
   <body>
@@ -50,10 +57,34 @@
 
     <center>
       <!--Search bar filter-->
-    <form id = "form">
-      <input type = "search" id = "query" name = "query" placeholder = "Seach for books, movies, and music" size = "40">
-      <button>Search</button>
-    </form>
+      <br>
+  
+      <form>
+      <div class="dropdown">
+        <div id="Dropdown" class="dropdown-content">
+          <input type="text" placeholder="Search For Your Favorite Movies" size="100" id="userInput" onkeyup="Func()">
+            <input type="button" value="Search">
+          <select>
+            <option>Category</option>
+            <option> Action & Adventure</option>
+            <option> Animation</option>
+            <option> Children & Family </option>
+            <option> Drama </option>
+            <option> Comedy </option>
+            <option> Crime </option> 
+            <option> Drama </option>
+            <option> Fantasy </option>
+            <option> Horror </option>
+            <option> Musical </option>
+            <option> Mystery </option>
+            <option> Romance </option>
+            <option> Sci-Fi </option>
+            <option> Thriller </option>
+            <option> Western </option>
+          </select>
+        </div>
+      </div>
+      </form>
 
     <br></br>
   </center>
