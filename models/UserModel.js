@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // EC: 03-08-2021 - create the user schema
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: [true, 'Username is required!'],
@@ -18,8 +18,9 @@ const userSchema = mongoose.Schema({
     password: {
         type: String, 
         required: [true, 'Password is required!'],
-        lowercase: true,
-    }
+        minlength: 5
+    },
 });
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+module.exports = User;
