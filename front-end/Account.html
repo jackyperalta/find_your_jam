@@ -15,42 +15,95 @@
         <div class="form"></div>
             <div class="tab-content">
                 <div id="signup"><h1>Create An Account With Us!</h1>
-                <form action="/" method="post">
+
+                <!-- SIGN UP FORM -->
+                <form action="/" method="post" id="signup-form">
                     <div class="top-row">
                         <div class="field-wrap">
                             <label>Username<span class="req">*</span></label>
-                            <input type="text"required autocomplete="off"/>
+                            <input id="username" type="text"required autocomplete="off"/>
                         </div>
                     </div>
                     
                     <div class="field-wrap"><label>Email Address<span class="req">*</span></label>
-                        <input type="email"required autocomplete="off"/>
+                        <input id="email" type="email"required autocomplete="off"/>
                     </div>
                     
                     <div class="field-wrap"><label>Create Password<span class="req">*</span></label>
-                        <input type = "password" required autocomplete="off"/>
+                        <input id="password" type="password" required minlength = "6" required autocomplete="off"/>
                     </div>
 
-                    <button type = "submit" class="button button-block">Sign Up</button>
+                    <button type="submit" value="signup" class="button button-block">Sign Up</button>
                     </form>
                 </div>
+                <div id="login"><h1>Welcome Back!</h1>
 
-                <div id="login"><h1>Welcome Back!</h1><form action="/" method="post">
+                    <!-- LOGIN FORM -->
+                    <form action="/" method="post" id="login-form">
                     <div class="field-wrap"><label>Email Address<span class="req">*</span></label>
-                        <input type="email" required autocomplete="off"/>
+                        <input id= "login-email" type="email" required autocomplete="off"/>
                     </div>
 
                     <div class="field-wrap"><label>Password<span class="req">*</span></label>
-                        <input type="password" required autocomplete="off"/>
+                        <input id="login-password" type="password" required autocomplete="off"/>
                     </div>
 
                     <p class="forgot"><a href="#">Forgot Password?</a></p>
 
-                    <button class="button button-block"/>Login</button>
+                    <button type="submit" value="login" class="button button-block"/>Login</button>
                 </form>
             </div>
         </div>
         </div>
     </center>
+
+    <script>
+        const signupForm = document.getElementById('signup-form')
+        signupForm.addEventListener('submit', registerUser)
+
+        async function registerUser(event) {
+            event.preventDefault()
+            const username = document.getElementById('username').value
+            const email = document.getElementById('email').value
+            const password = document.getElementById('password').value
+
+            const result = await fetch('/users/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username,
+                    email,
+                    password
+                })
+            })
+            .then ((res) => res.json())
+            console.log(result)
+        }
+        
+        const loginForm = document.getElementById("login-form");
+        loginForm.addEventListener('submit', loginUser)
+
+        async function loginUser(event) {
+            event.preventDefault()
+            const email = document.getElementById('login-email').value
+            const password = document.getElementById('login-password').value
+
+            const result = await fetch('/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            })
+            .then ((res) => res.json())
+            console.log(result)
+        }
+    </script>
+    </body>
 </head>
 </html>
