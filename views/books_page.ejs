@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <meta charset="UTF-8">
-  <meta name="description" content ="This page is to find movies.">
+  <meta name="description" content ="This page is to find book.">
   <head>
-    <link rel="shortcut icon" type = "image/png" href="Movie.png">
+    <link rel="shortcut icon" type = "image/png" href="Books.png">
     <style>
 
     .container {
@@ -15,12 +15,11 @@
     }
 
     body{
-      background-image: url('movie_background.jpg');
+      background-image: url('books_background.jpeg');
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-size: 100% 100%;
     }
-
     .dropdown {
       background-color: #df7e10;
       text-align: center;
@@ -34,27 +33,27 @@
     <div style="text-align:center">
 
     <div class="container">
-      <a .tab button style="color:darkblue;" href="indexk.html">Home</a>
+      <a .tab button style="color:darkgoldenrod;" href="/">Home</a>
       <div>
-        <a .tab button style="color:darkblue;" href="books_page.html" href="Books">
+        <a .tab button style="color:darkgoldenrod;" href="books">
           <img src="Books.png" alt="Books" width="80" height="80">
           <br>
           Books
         </a>
       </div>
       <div>
-        <a .tab button style="color:darkblue;" href="movies_page.html" href="Movies">
+        <a .tab button style="color:darkgoldenrod;" href="movies">
           <img src="Movie.png" alt="Movies" width="80">
           <br>Movies
         </a>
       </div>
       <div>
-        <a .tab button style="color:darkblue;" href="music_page.html" href="Music">
+        <a .tab button style="color:darkgoldenrod;" href="music">
           <img src="MusicLogo.png" alt="Music" width="80">
           <br>Music
         </a>
       </div>
-      <a .tab button style="color:darkblue;" href="Help.html">Help</a>
+      <a .tab button style="color:darkgoldenrod;" href="help">Help</a>
     </div>
 
     <center>
@@ -64,24 +63,39 @@
       <form>
       <div class="dropdown">
         <div id="Dropdown" class="dropdown-content">
-          <input type="text" placeholder="Search For Your Favorite Movies" size="100" id="userInput" onkeyup="Func()">
+          <input type="text" placeholder="Search For Your Favorite Books" size="100" id="userInput" onkeyup="Func()">
             <input type="button" value="Search">
           <select>
             <option>Category</option>
             <option> Action & Adventure</option>
-            <option> Animation</option>
-            <option> Children & Family </option>
+            <option> Autobiography</option>
+            <option> Biography </option>
+            <option> Business & Economics </option>
+            <option> Children's </option>
+            <option> Classic </option> 
+            <option> Cookbook </option>
+            <option> Comic book </option>
+            <option> Diary </option>
+            <option> Dictionary</option>
+            <option> Encyclopedia </option>
             <option> Drama </option>
-            <option> Comedy </option>
-            <option> Crime </option> 
-            <option> Drama </option>
+            <option> Health & Fitness </option>
             <option> Fantasy </option>
+            <option> Home & Garden </option>
+            <option> Humor </option>
             <option> Horror </option>
-            <option> Musical </option>
-            <option> Mystery </option>
+            <option> Journal </option>
+            <option> Math </option>
+            <option> Memoir </option>
+            <option> Philosophy </option>
+            <option> Poetry </option>
             <option> Romance </option>
             <option> Sci-Fi </option>
+            <option> Science</option>
+            <option> Sports & Leisure</option>
+            <option> Textbook </option>
             <option> Thriller </option>
+            <option> Travel </option>
             <option> Western </option>
           </select>
         </div>
