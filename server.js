@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const passport = require ('passport');
 const session = require('express-session');
-const axios = require('axios');
+const SpotifyWebApi = require('spotify-web-api-node');
 require('dotenv').config();
 require('./config/passport.js')(passport);
 
@@ -36,8 +36,12 @@ app.use(passport.session());
 
 // J.P: 3/17/21 - Import routers
 const userRouter = require ('./routes/UserRouter.js');
-app.use('/users', userRouter);
+const bookRouter = require('./routes/booksAPI.js');
+const movieRouter = require('./routes/moviesAPI.js');
 
+app.use('/users', userRouter);
+app.use('/book_results', bookRouter);
+app.use('/results', movieRouter);
 
 /** Homepage */
 app.get('/', (req, res) => {
@@ -54,27 +58,66 @@ app.get('/movies', (req, res) => {
     res.render('movies_page.ejs')
 });
 
-app.get('/results', async(req, res) => {
-    let search = req.query.search;
-    try {
-        const url = `http://www.omdbapi.com/?s=${search}&apikey=${process.env.OMDb_API_KEY}`;
-        const movieAPI = await axios.get(url);
-        res.render('movie_results.ejs', { movies : movieAPI.data.Search });
-    } catch (err) {
-        if(err.response) {
-            console.log(err.response.data)
-        } else if(err.request) {
-            console.log(err.request)
-        } else {
-            console.error('Error', err.message)
-        }
-    } 
-})
-
+/* ********************************************************************** */
 /** Music */
 app.get('/music', (req, res) => {
     res.render('music_page.ejs')
 });
+
+/**
+ * https://www.npmjs.com/package/spotify-web-api-node#client-credential-flow
+ */
+const client_ID = process.env.SPOTIFY_CLIENT_ID;
+const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
+
+const spotifyApi = new SpotifyWebApi({
+    clientId: client_ID,
+    clientSecret: client_secret
+});
+
+spotifyApi.clientCredentialsGrant()
+.then(function(data){
+    // if token expires, restart the server
+    console.log('Spotify access token expires in ' + data.body['expires_in'] + ' seconds.');
+    spotifyApi.setAccessToken(data.body['access_token']);
+}, function (err) {
+    console.log('Error when retrieving access token: ', err);
+});
+
+// Get multiple artists
+app.get('/artists', (req, res, next) => {
+    spotifyApi.searchArtists(req.query.search)
+      .then(function(data) {
+        console.log('Artist search: ' + req.query.search);
+        res.render('music_artists.ejs', { artists: data.body.artists.items });
+      }, function(err) {
+        console.log('Something went wrong!', err);
+      });
+});
+
+// Get multiple albums
+app.get('/albums', (req, res, next) => {
+    spotifyApi.searchAlbums(req.query.search)
+      .then(function(data) {
+        console.log('Album search: ' + req.query.search);
+        res.render('music_albums.ejs', { albums: data.body.albums.items });
+    }, function(err) {
+        console.log('Something went wrong!', err);
+    });
+});
+
+// Get multiple tracks
+app.get('/tracks', (req, res, next) => {
+    spotifyApi.searchTracks(req.query.search)
+    .then(function(data) {
+        console.log('Track search: ' + req.query.search);
+      res.render('music_tracks.ejs', { tracks: data.body.tracks.items });
+    }, function(err) {
+      console.log('Something went wrong!', err);
+    });
+})
+
+/* ********************************************************************** */
 
 /** Books */
 app.get('/books', (req, res) => {

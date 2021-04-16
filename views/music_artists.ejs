@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content ="This page is to find music.">
+  <head>
+    <link rel="shortcut icon" type = "image/png" href="MusicLogo.png">
+    <style>
+
+    .container {
+      display:flex;
+      flex-wrap: nowrap;
+      justify-content: space-evenly;
+      align-items:flex-end;
+      font-size: 30px;
+    }
+
+    body{
+      background-image: url('music_background.jpeg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100% 100%;
+    }
+
+    .dropdown {
+      background-color: #df7e10;
+      text-align: center;
+      font-family: Arial;
+      align-items:center;
+    }
+
+    .wrapper {
+	 padding: 0 1rem;
+    }
+
+    .music {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+        grid-gap: 2rem;
+    }
+
+    .music__card {
+        text-decoration: none;
+        color: #000;
+        background-color: #fff;
+        padding: 20px;
+    }
+
+    .music__card:hover {
+        box-shadow: 0 3px 3px rgba(0, 0, 0, 0.16), 0 3px 3px rgba(0, 0, 0, 0.23);
+    }
+    </style>
+  </head>
+  <body>
+
+    <div style="text-align:center">
+
+    <div class="container">
+      <a .tab button style="color:black;" href="/">Home</a>
+      <div>
+        <a .tab button style="color:black;" href="books">
+          <img src="Books.png" alt="Books" width="80" height="80">
+          <br>
+          Books
+        </a>
+      </div>
+      <div>
+        <a .tab button style="color:black;" href="movies">
+          <img src="Movie.png" alt="Movies" width="80">
+          <br>Movies
+        </a>
+      </div>
+      <div>
+        <a .tab button style="color:black;" href="music">
+          <img src="MusicLogo.png" alt="Music" width="80">
+          <br>Music
+        </a>
+      </div>
+
+      <a .tab button style="color:black;" href="help">Help</a>
+    </div>
+
+    <center>
+      <br>
+
+    <br></br>
+  </center>
+  <div class="wrapper">
+    <a href="music">&larr;- Back</a>
+    <div class="music">
+        <% for(var i = 0; i < artists.length; i++){ %>
+          <a class="music__card" target="_blank" href="<%= artists[i].external_urls.spotify %>">
+            <% if(artists[i].images[0]){%>
+              <img width="200" height="200" style="float:left;" src="<%= artists[i].images[0].url %>" alt="">
+            <%} else {%>
+              <img width="200" height="200" style="float:left;" src="https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" alt="">
+            <%}%>
+              <p size="60px" style="font-family:Sans-serif">
+                  <b>
+                      <font size="+2"><%= artists[i].name %></font>
+                      <br/>
+                  </b>
+                  <br/>
+                  <br/>
+                  Followers: <%= artists[i].followers.total %></br>
+                  Popularity: <%= artists[i].popularity %></br>
+                  <!-- maybe do an if else statement when genre is unknown for some artists -->
+                  Genres: <%= artists[i].genres %>
+              </p>
+          </a>
+        <% } %>
+    </div>
+  </div>
+</body>
+</html>

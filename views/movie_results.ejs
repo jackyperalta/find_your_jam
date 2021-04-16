@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width", initial-scale=1.0>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content ="This page is to find movies.">
   </head>
   <style>
@@ -24,6 +24,27 @@
       text-align: center;
       font-family: Arial;
       align-items:center;
+    }
+
+    .wrapper {
+      padding: 0 1rem;
+    }
+
+    .movies {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+        grid-gap: 2rem;
+    }
+
+    .movies__card {
+        text-decoration: none;
+        color: #000;
+        background-color: #fff;
+        padding: 20px;
+    }
+
+    .movies__card:hover {
+        box-shadow: 0 3px 3px rgba(0, 0, 0, 0.16), 0 3px 3px rgba(0, 0, 0, 0.23);
     }
     </style>
   <body>
@@ -61,12 +82,19 @@
     <a href="movies">&larr;- Back</a>
     <div class="movies">
       <% for(var i = 0; i < movies.length; i++){ %>
-        <a class="movies__card">
-          <img src="<%= movies[i].Poster %>" alt="<%= movies[i].Title %>">
-          <h2><%= movies[i].Title %></h2>
-          <h2><%= movies[i].Year %></h2>
+        <a class="movies__card" target="_blank" href="https://www.imdb.com/title/<%= movies[i].imdbID %>">
+          <img style="float:left;" src="<%= movies[i].Poster %>" alt="<%= movies[i].Title %>">
+          <p size="60px" style="font-family:Sans-serif">
+            <b>
+             <%= movies[i].Title %>
+             <br/>
+            Released: <%= movies[i].Year %>
+            </b>
+          </p>
+          <br/>
+          
         </a>
-        <% } %>
+      <% } %>
     </div>
   </div>
 </body>

@@ -21,12 +21,34 @@
       background-attachment: fixed;
       background-size: 100% 100%;
     }
+
     .dropdown {
       background-color: #df7e10;
       text-align: center;
       font-family: Arial;
       align-items:center;
-    } 
+    }
+
+    .wrapper {
+	 padding: 0 1rem;
+    }
+
+    .books {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+        grid-gap: 2rem;
+    }
+
+    .books__card {
+        text-decoration: none;
+        color: #000;
+        background-color: #fff;
+        padding: 20px;
+    }
+
+    .books__card:hover {
+        box-shadow: 0 3px 3px rgba(0, 0, 0, 0.16), 0 3px 3px rgba(0, 0, 0, 0.23);
+    }
     </style>
   </head>
   <body>
@@ -58,25 +80,30 @@
     </div>
 
     <center>
-      <!--Search bar filter-->
       <br>
-
-      <form action="/book_results" method="GET">
-      <div class="dropdown">
-        <div class="dropdown-content">
-          <input name="search" type="text" placeholder="Search For Your Favorite Books" size="100" autocomplete="off">
-            <input type="submit" value ="Search">
-          <select name="filter">
-            <option>ebooks</option>
-            <option>free-ebooks</option>
-            <option>full</option>
-            <option>paid-ebooks</option>
-            <option>partial</option>
-          </select>
-        </div>
-      </div>
-      </form>
     <br></br>
   </center>
+  <div class="wrapper">
+    <a href="books">&larr;- Back</a>
+    <div class="books">
+      <% for(var i = 0; i < books.items.length; i++){ %>
+        <a class="books__card" target="_blank" href="<%=books.items[i].volumeInfo.previewLink %>">
+            <img width="150" height="200" style="float:left; " src="<%= books.items[i].volumeInfo.imageLinks.thumbnail %>" alt="<%= books.items[i].volumeInfo.title %>">
+            <p size="60px" style="font-family:Sans-serif">
+                <b>
+                    <font size="+2"><%= books.items[i].volumeInfo.title %></font>
+                    <br/>
+                    Published Date: <%= books.items[i].volumeInfo.publishedDate %>
+                </b>
+                <br/>
+                <br/>
+                Author(s): <%= books.items[i].volumeInfo.authors %><br/>
+                Publisher: <%= books.items[i].volumeInfo.publisher %><br/>
+                Rating: <%= books.items[i].volumeInfo.averageRating %>/5
+            </p>
+        </a>
+        <% } %>
+    </div>
+  </div>
 </body>
 </html>

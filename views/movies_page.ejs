@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content ="This page is to find movies.">
   <head>
     <link rel="shortcut icon" type = "image/png" href="Movie.png">
@@ -63,26 +64,13 @@
   
       <form action="/results" method="GET">
       <div class="dropdown">
-        <div id="Dropdown" class="dropdown-content">
-          <input name="search" type="text" placeholder="Search For Your Favorite Movies" size="100">
-            <input type="submit">
-          <select>
-            <option>Category</option>
-            <option> Action & Adventure</option>
-            <option> Animation</option>
-            <option> Children & Family </option>
-            <option> Drama </option>
-            <option> Comedy </option>
-            <option> Crime </option> 
-            <option> Drama </option>
-            <option> Fantasy </option>
-            <option> Horror </option>
-            <option> Musical </option>
-            <option> Mystery </option>
-            <option> Romance </option>
-            <option> Sci-Fi </option>
-            <option> Thriller </option>
-            <option> Western </option>
+        <div class="dropdown-content">
+          <input name="search" type="text" placeholder="Search For Your Favorite Movies" size="100" autocomplete="off">
+            <input type="submit" value ="Search">
+          <select name="filter">
+            <option>movie</option>
+            <option>series</option>
+            <option>episode</option>
           </select>
         </div>
       </div>
