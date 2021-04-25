@@ -23,11 +23,53 @@
     }
 
     .dropdown {
-      background-color: #df7e10;
+      background-color: none;
       text-align: center;
       font-family: Arial;
       align-items:center;
     } 
+    .wrapper {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+      margin-top: 15%;
+      margin-left: 13.5%;
+      background: darkgoldenrod;
+      max-width: 900px;
+      width: 100%;
+      padding: 10px;
+      border-radius: 20px;
+    }
+    .wrapper .input {
+      width: 100%;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      background: whitesmoke;
+      font-family: Georgia;
+      
+    }
+    .searchbtn {
+      background: orange;
+      width: 9%;
+      border-radius: 5px;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      
+    }
+    .searchbtn .fas{
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+      font-size: 35px;
+    }
     </style>
   </head>
   <body>
@@ -65,16 +107,21 @@
       <form name="form1" onSubmit="actionOnSubmit()" method="GET">
       <div class="dropdown">
         <div id="Dropdown" class="dropdown-content">
-          <input name="search" type="text" placeholder="Search For Your Favorite Music" size="100" autocomplete="off">
-            <input type="submit"value ="Search">
+          <div class="wrapper">
+          <input name="search" type="text" class="input" placeholder="Search For Your Favorite Music" size="100" autocomplete="off">
           <select name="filter" id="filter">
             <option value="/artists">Artist</option>
             <option value="/albums">Album</option>
             <option value="/tracks">Track</option>
           </select>
+          <div class="searchbtn">
+            <input type="submit" value="Search">
+          </div>
+          </div>
         </div>
       </div>
       </form>
+    </div>
     <br></br>
   </center>
 </body>
