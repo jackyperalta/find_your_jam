@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+  <met name="description" content ="This website allows you to find your favorite books, movies, and music.">
+    <title>Find Your Jam</title>
+    <head>
+
+    <center>
+    <body background = "Background_image.png">
+        
+        <p><a href="/">Homepage</a></p>
+
+        <div class="form"></div>
+            <div class="tab-content">
+                <div id="signup"><h1>Create An Account With Us!</h1>
+                    <%- include ('./partials/alerts.ejs') %>
+                    <!-- SIGN UP FORM -->
+                    <form action="/" method="post" id="signup-form">
+                        <div class="top-row">
+                            <div class="field-wrap">
+                                <label>Name<span class="req">*</span></label>
+                                <input id="name" type="text"required autocomplete="off"/>
+                            </div>
+                        </div>
+                        <div class="field-wrap"><label>Email Address<span class="req">*</span></label>
+                            <input id="email" type="email"required autocomplete="off"/>
+                        </div>
+                        <div class="field-wrap"><label>Create Password<span class="req">*</span></label>
+                            <input id="password" type="password" required minlength = "6" required autocomplete="off"/>
+                        </div>
+                        <button type="submit" value="signup" class="button button-block">Sign Up</button>
+                    </form>
+                    <p> Already have an account? <a href="/login">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </center>
+
+    <script>
+        const signupForm = document.getElementById('signup-form')
+        signupForm.addEventListener('submit', registerUser)
+
+        async function registerUser(event) {
+            event.preventDefault()
+            const name = document.getElementById('name').value
+            const email = document.getElementById('email').value
+            const password = document.getElementById('password').value
+
+            const result = await fetch('/users/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    password
+                })
+            })
+            .then ((res) => res.json())
+            console.log(result)
+        }
+    </script>
+    </body>
+</head>
+</html>

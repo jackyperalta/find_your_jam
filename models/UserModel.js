@@ -2,10 +2,9 @@ const mongoose = require('mongoose');
 
 // EC: 03-08-2021 - create the user schema
 const userSchema = new mongoose.Schema({
-    username: {
+    name: {
         type: String,
-        required: [true, 'Username is required!'],
-        unique: true,
+        required: [true, 'Name is required!'],
         trim: true
     },
     email: {

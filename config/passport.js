@@ -5,23 +5,23 @@ const User = require ('../models/UserModel.js');
 
 module.exports = function(passport){
     passport.use(
-        new LocalStrat({usernameField: 'email', passwordField: 'password'}, (email,password,done)=>{
+        new LocalStrat({usernameField: 'email'}, (email,password,done)=>{
             // Match user by email - Is there an account under that email?
             User.findOne({email: email})
             .then((user)=>{
                 if(!user) {
                     console.log('Email is not registered. ' + email);
-                    return done(null,false);
+                    return done(null, false, {message: 'Email is not registered.' + email});
                 }
                 // Match password to account - Is the password correct?
                 bcrypt.compare(password, user.password, (err,isMatch)=>{
                     if(err) throw err;
                     if(isMatch) {
-                        console.log('Logged in! Hey ' + user.username);
+                        console.log('Logged in! Hey ' + user.name);
                         return done(null,user);
                     } else {
                         console.log('Incorrect password. ');
-                        return done(null,false);
+                        return done(null, false, {message: 'Incorrect password.'});
                     }
                 })
             })

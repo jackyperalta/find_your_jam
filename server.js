@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const passport = require ('passport');
 const session = require('express-session');
+const flash = require('connect-flash');
 const SpotifyWebApi = require('spotify-web-api-node');
 require('dotenv').config();
 require('./config/passport.js')(passport);
@@ -27,12 +28,19 @@ mongoose.connect(process.env.DB_URI, {
 // EC: 04-01-2021 - Express-session 
 app.use(session({
     secret : process.env.SESSION_SECRET,
-    resave : true,
-    saveUninitialized : true
-   }));
+    saveUninitialized : true,
+    resave : true
+}));
 // For user authentication - passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+// Connect flash
+app.use(flash());
+app.use((req,res,next)=> {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  next();
+});
 
 // J.P: 3/17/21 - Import routers
 const userRouter = require ('./routes/UserRouter.js');
@@ -49,8 +57,11 @@ app.get('/', (req, res) => {
 });
 
 /** Account */
-app.get('/account', (req, res) => {
-    res.render('Account.ejs')
+app.get('/login', (req, res) => {
+    res.render('login.ejs')
+});
+app.get('/register', (req, res) => {
+    res.render('register.ejs')
 });
 
 /** Movies */
