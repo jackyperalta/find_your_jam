@@ -39,6 +39,7 @@ app.use(flash());
 app.use((req,res,next)=> {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
   next();
 });
 
@@ -54,14 +55,6 @@ app.use('/results', movieRouter);
 /** Homepage */
 app.get('/', (req, res) => {
     res.render('indexk.ejs')
-});
-
-/** Account */
-app.get('/login', (req, res) => {
-    res.render('login.ejs')
-});
-app.get('/register', (req, res) => {
-    res.render('register.ejs')
 });
 
 /** Movies */

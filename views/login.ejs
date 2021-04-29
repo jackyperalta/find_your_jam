@@ -4,10 +4,8 @@
   <met name="description" content ="This website allows you to find your favorite books, movies, and music.">
     <title>Find Your Jam</title>
     <head>
-
+        <body background = "../public/Background_image.png">
     <center>
-    <body background = "Background_image.png">
-        
         <p><a href="/">Homepage</a></p>
 
         <div class="form"></div>
@@ -25,7 +23,7 @@
                         <p class="forgot"><a href="#">Forgot Password?</a></p>
                         <button type="submit" value="login" class="button button-block"/>Login</button>
                     </form>
-                    <p> Need to create an account? <a href="/register">Register</a></p>
+                    <p> Need to create an account? <a href="/users/register">Register</a></p>
                 </div>
             </div>
         </div>
@@ -50,7 +48,17 @@
                     password
                 })
             })
-            .then ((res) => res.json())
+            .then (
+                (res) => {
+                    console.log(res)//res.json()
+                    if (res.status == 200) {
+                        window.location.href = res.url;
+                    }
+                }
+            )
+            .catch((error) => {
+                console.log(error);
+            })
             console.log(result)
         }
     </script>
