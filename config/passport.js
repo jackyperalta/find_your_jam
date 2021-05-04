@@ -1,4 +1,5 @@
-// EC: 04-01-2021 - User Authentication 
+// E.C: 04-01-2021 - User Authentication
+// E.C: 04-10-2021 - Worked on returning messages 
 const LocalStrat = require ('passport-local').Strategy;
 const bcrypt = require ('bcrypt');
 const User = require ('../models/UserModel.js');
