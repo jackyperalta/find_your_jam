@@ -1,4 +1,8 @@
-// EC: 03-08-2021 - Implement routes
+// E.C: 03-08-2021 - Implement routes
+// E.C: 03-20-2021 - Updated all routes
+// E.C: 04-27-2021 - Fixed logout route and updated the middleware for
+// login/register 
+// E.C: 05-01-2021 - Attempted to fix flash messages
 const express = require('express');
 const router = express.Router();
 const User = require('../models/UserModel.js');
@@ -32,8 +36,7 @@ router.post('/register',(req,res)=> {
         if(user) {
             console.log('Email has already been registered!');
             req.flash('error_msg', 'Email has already been registered!');
-            // res.render works also AND should print the flash message 
-            res.redirect('/users/register');
+            res.render('register');
         } else {
             const newUser = new User({
                 name : name,
@@ -50,10 +53,11 @@ router.post('/register',(req,res)=> {
                 newUser.save()
                 .then((value)=>{
                     console.log(value);
-                    req.flash('success_msg', 'Your account has been created! You can now login.');
                     console.log('Your account has been created! You can now login.');
+                    req.flash('success_msg', 'Your account has been created! You can now login.');
                     // res.render does not work but should print the flash message on the register page
-                    res.redirect('/users/login');
+                    res.redirect('/users/login')
+                    //return res.render('login');
                 })
                 .catch(value=> console.log(value));
             }))
@@ -70,7 +74,7 @@ router.get('/logout', (req, res) => {
         return res.redirect('/users/login');
     }
     req.flash('success_msg', 'You cannot logout but you can sign in!');
-    console.log('You cannot logout but you can sign in!')
+    console.log('You cannot log out but you can sign in!')
     return res.redirect('/users/login');
    });
 module.exports = router;

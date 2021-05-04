@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
-// EC: 03-08-2021 - create the user schema
+// E.C: 03-08-2021 - Create the user schema
+// E.C: 04-08-2021 - Users can register with name instead (updated schema)
 const userSchema = new mongoose.Schema({
     name: {
         type: String,

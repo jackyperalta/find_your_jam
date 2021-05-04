@@ -6,6 +6,7 @@ const flash = require('connect-flash');
 const SpotifyWebApi = require('spotify-web-api-node');
 require('dotenv').config();
 require('./config/passport.js')(passport);
+const {ensureAuthenticated} = require('./config/auth');
 
 const app = express();
 const port = process.env.PORT || 8001;
@@ -25,7 +26,7 @@ mongoose.connect(process.env.DB_URI, {
 .then(() => console.log('database connected...'))
 .catch(err => console.log(err));
 
-// EC: 04-01-2021 - Express-session 
+// E.C: 04-01-2021 - Express-session 
 app.use(session({
     secret : process.env.SESSION_SECRET,
     saveUninitialized : true,
@@ -126,9 +127,12 @@ app.get('/books', (req, res) => {
     res.render('books_page.ejs')
 });
 
+// E.C: 05-01-2021 - Only registered users will view their bookmarked results
 /** Bookmarks */
-app.get('/bookmarks', (req, res) => {
-    res.render('bookmark.ejs')
+app.get('/bookmarks', ensureAuthenticated, (req, res) => {
+    res.render('bookmark.ejs', {
+        user: req.user
+    })
 });
 
 /** Help */

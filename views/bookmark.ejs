@@ -30,6 +30,7 @@
   </head>
   <body>
 
+    <!-- E.C: 04-27-2021 - Added small logout/login -->
     <!-- Move to it's own file? -->
     <div style="text-align:right">
       <a href="/users/logout" class="btn btn-secondary">Log-out/Log-in</a>
@@ -61,9 +62,19 @@
 
       <a .tab button style="color:darkgoldenrod;" href="help">Help</a>
     </div>
-    <!-- user.name is "not found"-->
-    <!-- <center>
-      <p class="lead mb-3">Welcome <1%= user.name %>, here are your saved bookmarks!</p>
-    </center> -->
+
+    <!-- E.C: 04-27-2021 - Attempted to get user's name to display if logged in
+    with a message -->
+    <!-- E.C: 05-01-2021 - Only registered users will view their bookmarked results 
+    and non-registered/not logged in users will be asked to register/login to
+    view bookmarked results -->
+    <center>
+        <% try { %>
+          <% if(user) %>
+          <p class="lead mb-3">Welcome <%= user.name %>, here are your saved bookmarks!</p>
+        <% } catch (error) { %>
+          <p class="lead mb-3">Please login/register to bookmark your search results.</p>
+        <% } %>
+    </center>
   </body>
 </html>
