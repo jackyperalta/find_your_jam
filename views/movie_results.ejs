@@ -83,6 +83,7 @@
     <form>
       <input type="button" value="Back" onclick="history.back()">
     </form>
+    <!-- JP: 2021-04-05 - embedded javscript code to display search results  -->
     <div class="movies">
       <% for(var i = 0; i < movies.length; i++){ %>
         <a class="movies__card" target="_blank" href="https://www.imdb.com/title/<%= movies[i].imdbID %>">
@@ -95,10 +96,10 @@
             </b>
           </p>
           <br/>
-          
         </a>
       <% } %>
     </div>
+
   </div>
 </body>
 </html>

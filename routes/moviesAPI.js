@@ -1,11 +1,9 @@
+// moviesAPI.js - GET request to The Open Movie Database API
+// Maintained by: Jacqueline Peralta
+
 const express = require('express');
 const axios = require('axios');
 const router = express.Router();
-
-/**
- * https://www.omdbapi.com/#usage
- */
-
 
 router.get('/', async(req, res) => {
     let search = req.query.search;

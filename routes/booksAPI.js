@@ -1,10 +1,10 @@
+// booksAPI.js - GET request to Google Books API
+// Maintained by: Jacqueline Peralta
+
 const express = require('express');
 const axios = require('axios');
 const router = express.Router();
 
-/**
- * https://developers.google.com/books/docs/v1/reference/volumes/list
- */
 router.get("/", async(req, res) => {
     let search_terms = req.query.search;
     let filter = req.query.filter;

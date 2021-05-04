@@ -43,7 +43,7 @@ app.use((req,res,next)=> {
   next();
 });
 
-// J.P: 3/17/21 - Import routers
+// J.P: 2021-03-17 - Adding routes
 const userRouter = require ('./routes/UserRouter.js');
 const bookRouter = require('./routes/booksAPI.js');
 const movieRouter = require('./routes/moviesAPI.js');
@@ -63,14 +63,12 @@ app.get('/movies', (req, res) => {
 });
 
 /* ********************************************************************** */
+// JP: 2021-04-13 - Get requests to Spotify API using Client Credential Flow
 /** Music */
 app.get('/music', (req, res) => {
     res.render('music_page.ejs')
 });
 
-/**
- * https://www.npmjs.com/package/spotify-web-api-node#client-credential-flow
- */
 const client_ID = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
 
@@ -81,7 +79,7 @@ const spotifyApi = new SpotifyWebApi({
 
 spotifyApi.clientCredentialsGrant()
 .then(function(data){
-    // if token expires, restart the server
+    // if token expires, restart the web server
     console.log('Spotify access token expires in ' + data.body['expires_in'] + ' seconds.');
     spotifyApi.setAccessToken(data.body['access_token']);
 }, function (err) {
