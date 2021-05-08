@@ -108,8 +108,14 @@
                   <br/>
                   Followers: <%= artists[i].followers.total %></br>
                   Popularity: <%= artists[i].popularity %></br>
-                  <!-- maybe do an if else statement when genre is unknown for some artists -->
-                  Genres: <%= artists[i].genres %>
+                  Genres: <%= artists[i].genres %><!-- maybe do an if else statement when genre is unknown for some artists -->
+
+                <!-- JP: 2021-05-08 to send to backend -->
+                <form action="/allBookmarks" method="POST">
+                  <input type="hidden" name="title" value="<%= artists[i].name %>" /><br/>
+                  <input type="hidden" name="url" value="<%= artists[i].external_urls.spotify %>" /><br/>
+                  <button type="submit" value="accept">Bookmark</button>
+                </form>
               </p>
           </a>
         <% } %>

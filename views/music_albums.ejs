@@ -110,6 +110,12 @@
                   Artist: <%= albums[i].artists[0].name %></br>
                   Released Date: <%= albums[i].release_date %></br>
                   Total Tracks: <%= albums[i].total_tracks %></br>
+
+                  <form action="/allBookmarks" method="POST">
+                    <input type="hidden" name="title" value="<%= albums[i].name %>" /><br/>
+                    <input type="hidden" name="url" value="<%= albums[i].external_urls.spotify %>" /><br/>
+                    <button type="submit" value="accept">Bookmark</button>
+                  </form>
               </p>
           </a>
         <% } %>

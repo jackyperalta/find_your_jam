@@ -70,8 +70,24 @@
     view bookmarked results -->
     <center>
         <% try { %>
-          <% if(user) %>
-          <p class="lead mb-3">Welcome <%= user.name %>, here are your saved bookmarks!</p>
+          <% if(user)%>
+            <p class="lead mb-3">Welcome <%= user.name %>, here are your saved bookmarks!</p>
+            <!--JP: 2021-05-05 Trying to output user's bookmarks-->
+            <h2>Bookmarks</h2>
+            <div class="todo">
+              <% if(bookmarkList.length > 0) { %>
+                <ul class="todo-list">
+                  <% for(var i = 0; i < bookmarkList.length; i++) { %>
+                    <li class="todo-list-item">
+                      <div class="todo-list-item-name"><%= bookmarkList[i].title %></div>
+                      <a href="/remove/<%= bookmarkList[i]._id %>" class="remove"> <span class="fas fa-times"></span></a>
+                    </li>
+                  <% } %>
+                </ul>
+              <% } else { %>
+                <p>You currently have nothing saved.</p>
+              <% } %>
+            </div>
         <% } catch (error) { %>
           <p class="lead mb-3">Please login/register to bookmark your search results.</p>
         <% } %>

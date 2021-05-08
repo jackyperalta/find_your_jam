@@ -17,9 +17,9 @@ router.get('/login', forwardAuthenticated, (req,res)=>{
 // Flash messages for login are still not visible 
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
-      successRedirect: '/bookmarks', 
+      successRedirect: '/bookmarks',
       failureRedirect: '/users/login',
-      failureFlash: true
+      failureFlash: true //http://www.passportjs.org/docs/authenticate/
     })(req, res, next);
 });
 

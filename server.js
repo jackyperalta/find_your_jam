@@ -12,7 +12,7 @@ const app = express();
 const port = process.env.PORT || 8001;
 
 app.use(express.json());
-
+app.use(express.urlencoded({extended: false}))
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
@@ -22,6 +22,7 @@ mongoose.connect(process.env.DB_URI, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
+    //useFindandModify: false
 })
 .then(() => console.log('database connected...'))
 .catch(err => console.log(err));
@@ -48,10 +49,12 @@ app.use((req,res,next)=> {
 const userRouter = require ('./routes/UserRouter.js');
 const bookRouter = require('./routes/booksAPI.js');
 const movieRouter = require('./routes/moviesAPI.js');
+const bookmarkRouter = require('./routes/bookmarkRouter.js')
 
 app.use('/users', userRouter);
 app.use('/book_results', bookRouter);
 app.use('/results', movieRouter);
+app.use('/', bookmarkRouter);
 
 /** Homepage */
 app.get('/', (req, res) => {

@@ -111,11 +111,13 @@
                   <br/>
                   <br/>
                   <!-- only some results have an audio preview -->
-                  <audio name="media" controls="">
-                    <source
-                      src="<%=tracks[i].preview_url%>" 
-                      type="audio/mp3"/>
-                  </audio>
+                  <audio name="media" controls=""> <source src="<%=tracks[i].preview_url%>" type="audio/mp3"/> </audio>
+
+                  <form action="/allBookmarks" method="POST">
+                    <input type="hidden" name="title" value="<%= tracks[i].name %>" /><br/>
+                    <input type="hidden" name="url" value="<%= tracks[i].external_urls.spotify %>" /><br/>
+                    <button type="submit" value="accept">Bookmark</button>
+                  </form>
               </p>
           </a>
         <% } %>

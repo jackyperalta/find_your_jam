@@ -90,14 +90,14 @@
       <input type="button" value="Back" onclick="history.back()">
     </form>
 
-    <!-- JP: 2021-04-05 - embedded javscript code to display search results  -->
-    <div class="books">
+    <!-- JP: 2021-04-05 - ejs code to display search results  -->
+    <div id="start" class="books">
       <% for(var i = 0; i < books.items.length; i++){ %>
         <a class="books__card" target="_blank" href="<%=books.items[i].volumeInfo.previewLink %>">
             <img width="150" height="200" style="float:left; " src="<%= books.items[i].volumeInfo.imageLinks.thumbnail %>" alt="<%= books.items[i].volumeInfo.title %>">
             <p size="60px" style="font-family:Sans-serif">
                 <b>
-                    <font size="+2"><%= books.items[i].volumeInfo.title %></font>
+                    <font id="get-title" size="+2"><%= books.items[i].volumeInfo.title %></font>
                     <br/>
                     Published Date: <%= books.items[i].volumeInfo.publishedDate %>
                 </b>
@@ -105,13 +105,19 @@
                 <br/>
                 Author(s): <%= books.items[i].volumeInfo.authors %><br/>
                 Publisher: <%= books.items[i].volumeInfo.publisher %><br/>
-                Rating: <%= books.items[i].volumeInfo.averageRating %>/5
+                Rating: <%= books.items[i].volumeInfo.averageRating %>/5<br/>
+
+                <!-- JP: 2021-05-08 to send to backend -->
+              <form action="/allBookmarks" method="POST">
+                <input type="hidden" name="title" value="<%= books.items[i].volumeInfo.title %>" /><br/>
+                <input type="hidden" name="url" value="<%=books.items[i].volumeInfo.previewLink %>" /><br/>
+                <button type="submit" value="accept">Bookmark</button>
+              </form>
             </p>
-            <button type="button">Bookmark</button>
         </a>
         <% } %>
     </div>
-
   </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 </html>

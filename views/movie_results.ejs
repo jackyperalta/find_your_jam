@@ -87,13 +87,20 @@
     <div class="movies">
       <% for(var i = 0; i < movies.length; i++){ %>
         <a class="movies__card" target="_blank" href="https://www.imdb.com/title/<%= movies[i].imdbID %>">
-          <img style="float:left;" src="<%= movies[i].Poster %>" alt="<%= movies[i].Title %>">
+          <img style="float:left; width:200px; height:344;" src="<%= movies[i].Poster %>" alt="<%= movies[i].Title %>">
           <p size="60px" style="font-family:Sans-serif">
             <b>
              <%= movies[i].Title %>
              <br/>
             Released: <%= movies[i].Year %>
             </b>
+
+          <!-- JP: 2021-05-08 to send to backend -->
+          <form action="/allBookmarks" method="POST">
+            <input type="hidden" name="title" value="<%= movies[i].Title %>" /><br/>
+            <input type="hidden" name="url" value="https://www.imdb.com/title/<%= movies[i].imdbID %>" /><br/>
+            <button type="submit" value="accept">Bookmark</button>
+          </form>
           </p>
           <br/>
         </a>
