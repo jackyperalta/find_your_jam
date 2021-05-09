@@ -6,7 +6,7 @@ const {ensureAuthenticated} = require('../config/auth');
 const router = express.Router();
 
 // CREATE
-router.post('/allBookmarks', ensureAuthenticated, (req, res) => {
+router.post('/allBookmarks', (req, res) => {
     const title = req.body.title;
     const url = req.body.url;
     console.log(title, url);
@@ -29,13 +29,15 @@ router.post('/allBookmarks', ensureAuthenticated, (req, res) => {
     });
 });
 
-// READ
-router.get('/allBookmarks', ensureAuthenticated, (req, res) => {
-    Bookmark.find({}, (err, bookmarks) => {
-        if (err){
-        console.log(err);
+// E.C: 05-01-2021 - Only registered users will view their bookmarked results
+/** Bookmarks */
+router.get('/bookmarks', ensureAuthenticated, (req, res) => {
+    // JP: 2021-05-08 - added snippet to get bookmark for users
+    Bookmark.find({user: req.user}, function(err, foundBookmarks){
+        if(err){
+            console.log(err);
         } else {
-            res.render('bookmark.ejs', { bookmarkList: bookmarks });
+            res.render("bookmark.ejs", {bookmarkList:foundBookmarks,  user: req.user});
         }
     });
 });

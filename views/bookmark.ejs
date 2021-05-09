@@ -75,7 +75,6 @@
             <!--JP: 2021-05-05 Trying to output user's bookmarks-->
             <h2>Bookmarks</h2>
             <div class="todo">
-              <% if(bookmarkList.length > 0) { %>
                 <ul class="todo-list">
                   <% for(var i = 0; i < bookmarkList.length; i++) { %>
                     <li class="todo-list-item">
@@ -84,9 +83,6 @@
                     </li>
                   <% } %>
                 </ul>
-              <% } else { %>
-                <p>You currently have nothing saved.</p>
-              <% } %>
             </div>
         <% } catch (error) { %>
           <p class="lead mb-3">Please login/register to bookmark your search results.</p>
