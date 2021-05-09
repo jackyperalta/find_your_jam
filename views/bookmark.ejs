@@ -25,7 +25,25 @@
       text-align: center;
       font-family: Arial;
       align-items:center;
-    } 
+    }
+
+    .bookmark {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+        grid-gap: 2rem;
+    }
+
+    .bookmark__card {
+        text-decoration: none;
+        color: #000;
+        background-color: #fff;
+        padding: 20px;
+    }
+
+    .bookmark__card:hover {
+        box-shadow: 0 3px 3px rgba(0, 0, 0, 0.16), 0 3px 3px rgba(0, 0, 0, 0.23);
+    }
+
     </style>
   </head>
   <body>
@@ -74,15 +92,18 @@
             <p class="lead mb-3">Welcome <%= user.name %>, here are your saved bookmarks!</p>
             <!--JP: 2021-05-05 Trying to output user's bookmarks-->
             <h2>Bookmarks</h2>
-            <div class="todo">
-                <ul class="todo-list">
+            <div class="bookmark">
                   <% for(var i = 0; i < bookmarkList.length; i++) { %>
-                    <li class="todo-list-item">
-                      <div class="todo-list-item-name"><%= bookmarkList[i].title %></div>
-                      <a href="/remove/<%= bookmarkList[i]._id %>" class="remove"> <span class="fas fa-times"></span></a>
-                    </li>
+                    <a class="bookmark__card" target="_blank" href="<%= bookmarkList[i].url %>">
+                      <p size="60px" style="font-family:Sans-serif">
+                        <b><%= bookmarkList[i].title %></b><br/>
+
+                        <form action="/bookmarks/<%=bookmarkList[i]._id%>/?_method=DELETE" method="POST">
+                          <button onclick="return confirm('Are you sure you want to delete this bookmark?');">Delete</button>                        
+                      </form>
+                      </p>
+                    </a>
                   <% } %>
-                </ul>
             </div>
         <% } catch (error) { %>
           <p class="lead mb-3">Please login/register to bookmark your search results.</p>

@@ -3,10 +3,14 @@
 const express = require('express');
 const Bookmark = require('../models/bookmarkModel.js');
 const {ensureAuthenticated} = require('../config/auth');
+const methodOverride = require('method-override');
+//const popup = require('popups');
 const router = express.Router();
 
+router.use(methodOverride('_method'));
+
 // CREATE
-router.post('/allBookmarks', (req, res) => {
+router.post('/allBookmarks', ensureAuthenticated, (req, res) => {
     const title = req.body.title;
     const url = req.body.url;
     console.log(title, url);
@@ -14,8 +18,8 @@ router.post('/allBookmarks', (req, res) => {
 
     Bookmark.findOne({'title': title}, (err, Bookmark) => {
         if (Bookmark) {
-            //res.redirect("/");
-            res.send('This Bookmark is already in saved.');
+            res.send('This bookmark has already been saved.');
+            console.log('Bookmark saved already.');
         } else {
             newBookmark.title = title;
             newBookmark.url = url;
@@ -23,7 +27,8 @@ router.post('/allBookmarks', (req, res) => {
             console.log(newBookmark);
             newBookmark.save((err) => {
                 if(err) throw err;
-                res.send("New bookmark, " + newBookmark.title + ", was added to database.");
+                res.send("New bookmark, " + newBookmark.title + ", was saved!");
+                console.log('Bookmark added.');
             });
         };
     });
@@ -33,7 +38,7 @@ router.post('/allBookmarks', (req, res) => {
 /** Bookmarks */
 router.get('/bookmarks', ensureAuthenticated, (req, res) => {
     // JP: 2021-05-08 - added snippet to get bookmark for users
-    Bookmark.find({user: req.user}, function(err, foundBookmarks){
+    Bookmark.find({user: req.user}, (err, foundBookmarks) => {
         if(err){
             console.log(err);
         } else {
@@ -42,12 +47,13 @@ router.get('/bookmarks', ensureAuthenticated, (req, res) => {
     });
 });
 
-//DELETE: not yet able to check if this works
-router.route("/remove/:id").get((req, res) => {
-    const id = req.params.id;
-    Bookmark.findByIdAndDelete(id, err => {
-        if (err) return res.send(500, err);
-        res.redirect("/");
+router.delete("/bookmarks/:id", (req, res) => {
+    Bookmark.findByIdAndDelete(req.params.id, (err) => {
+        if(err){
+            res.redirect("/bookmarks");
+        } else {
+            res.redirect("/bookmarks");
+        }
     });
 });
 
