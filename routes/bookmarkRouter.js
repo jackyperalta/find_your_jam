@@ -18,7 +18,8 @@ router.post('/allBookmarks', ensureAuthenticated, (req, res) => {
 
     Bookmark.findOne({'title': title}, (err, Bookmark) => {
         if (Bookmark) {
-            res.send('This bookmark has already been saved.');
+            //res.send('This bookmark has already been saved.');
+            res.redirect('back');
             console.log('Bookmark saved already.');
         } else {
             newBookmark.title = title;
