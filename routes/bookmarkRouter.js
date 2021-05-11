@@ -27,8 +27,10 @@ router.post('/allBookmarks', ensureAuthenticated, (req, res) => {
             console.log(newBookmark);
             newBookmark.save((err) => {
                 if(err) throw err;
-                res.send("New bookmark, " + newBookmark.title + ", was saved!");
+                //res.send("New bookmark, " + newBookmark.title + ", was saved!");
                 console.log('Bookmark added.');
+                res.redirect('back');
+                //res.json({success: true});
             });
         };
     });

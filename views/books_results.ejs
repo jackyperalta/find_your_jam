@@ -109,8 +109,8 @@
 
                 <!-- JP: 2021-05-08 to send to backend -->
               <form action="/allBookmarks" method="POST">
-                <input type="hidden" name="title" value="<%= books.items[i].volumeInfo.title %>" /><br/>
-                <input type="hidden" name="url" value="<%=books.items[i].volumeInfo.previewLink %>" /><br/>
+                <input type="hidden" id="title" name="title" value="<%= books.items[i].volumeInfo.title %>" /><br/>
+                <input type="hidden" id="url" name="url" value="<%=books.items[i].volumeInfo.previewLink %>" /><br/>
                 <button type="submit" value="accept">Bookmark</button>
               </form>
             </p>
@@ -119,5 +119,24 @@
     </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+  //  $("button").click(function(e) {
+  //   e.preventDefault();
+  //     $.ajax({
+  //         type: "POST",
+  //         url: 'http://localhost:8001/allBookmarks',
+  //         data: { 
+  //           title: $("#title").val(),
+  //           url: $("#url").val()
+  //         },
+  //         success: function (result) {
+  //             alert('Bookmark added.');
+  //         },
+  //         error: function (result) {
+  //             alert('You already have this bookmark saved.');
+  //         }
+  //     });
+  //   });
+  </script>
 </body>
 </html>
