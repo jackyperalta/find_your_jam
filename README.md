@@ -4,7 +4,8 @@ have the option to create an account to bookmark any of your search results, as 
 as a dropdown menu to filter them. Enjoy!
 
 ## What will you need?
-Download and install [Node.js](https://nodejs.org/en/download/)
+Download and install [Node.js](https://nodejs.org/en/download/).
+
 *To check if you installed Node.js correctly, go to your terminal and type 'node -v'.*
 *You should see the version number of Node.js you just installed.*
 
@@ -23,6 +24,7 @@ If you choose to clone our repository, do the following:
 Host your MongoDB database locally or using [MongoDB Atlas](https://www.mongodb.com/). Obtain your OMDb API key by
 registering [here](https://www.omdbapi.com/). Lastly, go to the Spotify for Developer page and obtain your Spotify keys by signing in
 with your Spotify credentials. For SESSION_SECRET, you can put a random string of your choice.
+
 *Your .env file should bet set up like this:*
 ```
 DB_URI=
